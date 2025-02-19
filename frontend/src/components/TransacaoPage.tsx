@@ -7,7 +7,7 @@ const TransacaoPage = () => {
   const [descricao, setDescricao] = useState('');
   const [valor, setValor] = useState('');
   const [tipo, setTipo] = useState<'DESPESA' | 'RECEITA'>('DESPESA');
-  const [id,setId] = useState('')
+  const [pessoaId,setpessoaId] = useState('')
 
   useEffect(() => {
     const carregarTransacoes = async () => {
@@ -34,7 +34,7 @@ const TransacaoPage = () => {
           descricao,
           valor: Number(valor),
           tipo,
-          pessoaId: Number(id)
+          pessoaId: Number(pessoaId)
       });
 
       setTransacoes([...transacoes, novaTransacao]); 
@@ -72,7 +72,7 @@ const TransacaoPage = () => {
         <br />
         <label>
           ID do usuário:
-          <input type="number" value={id} onChange={(e) => setId(e.target.value)} />
+          <input type="number" value={pessoaId} onChange={(e) => setpessoaId(e.target.value)} />
         </label>
         <br />
         <button type="submit">Cadastrar</button>
