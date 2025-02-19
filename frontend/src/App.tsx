@@ -1,45 +1,43 @@
-import { useEffect, useState } from 'react';
-import './App.css';
-import { pessoaService } from './services/pessoaService';
-import { Pessoa } from './types';
+import { useEffect, useState } from 'react'
+import './App.css'
+import { pessoaService } from './services/pessoaService'
+import { Pessoa } from './types'
 
 function App() {
-  const [pessoas, setPessoas] = useState<Pessoa[]>([]);
-  const [nome, setNome] = useState('');
-  const [idade, setIdade] = useState('');
+  const [pessoas, setPessoas] = useState<Pessoa[]>([])
+  const [nome, setNome] = useState('')
+  const [idade, setIdade] = useState('')
 
-  // Carregar lista de pessoas ao iniciar
   useEffect(() => {
     const carregarPessoas = async () => {
       try {
-        const data = await pessoaService.listar();
-        setPessoas(data);
+        const data = await pessoaService.listar()
+        setPessoas(data)
       } catch (error) {
-        console.error('Erro ao carregar pessoas:', error);
+        console.error('Erro ao carregar pessoas:', error)
       }
-    };
+    }
 
-    carregarPessoas();
-  }, []);
+    carregarPessoas()
+  }, [])
 
-  // Função para cadastrar nova pessoa
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
+    event.preventDefault()
     if (!nome || !idade) {
-      alert('Por favor, preencha todos os campos.');
-      return;
+      alert('Por favor, preencha todos os campos.')
+      return
     }
 
     try {
-      const novaPessoa = await pessoaService.criar(nome, Number(idade));
-      setPessoas([...pessoas, novaPessoa]); // Atualiza a lista após o cadastro
-      setNome('');
-      setIdade('');
+      const novaPessoa = await pessoaService.criar(nome, Number(idade))
+      setPessoas([...pessoas, novaPessoa]) 
+      setNome('')
+      setIdade('')
     } catch (error) {
-      console.error('Erro ao cadastrar pessoa:', error);
-      alert('Erro ao cadastrar pessoa.');
+      console.error('Erro ao cadastrar pessoa:', error)
+      alert('Erro ao cadastrar pessoa.')
     }
-  };
+  }
 
   return (
     <div>
@@ -67,7 +65,7 @@ function App() {
         ))}
       </ul>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
