@@ -34,7 +34,7 @@ const TransacaoPage = () => {
           descricao,
           valor: Number(valor),
           tipo,
-          pessoaId: 0
+          pessoaId: Number(id)
       });
 
       setTransacoes([...transacoes, novaTransacao]); 
