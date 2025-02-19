@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { pessoaService } from './services/pessoaService';
+import { pessoaService } from '../services/pessoaService';
 
 const CadastroPessoa = () => {
   const [nome, setNome] = useState('');
