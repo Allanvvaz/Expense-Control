@@ -56,5 +56,20 @@ export class PessoaService {
 
     return { pessoas: resultados, totalGeral };
   }
+  async deletarPessoa(id: number) {
+    const pessoa = await this.prisma.pessoa.findUnique({
+      where: { id },
+    });
+  
+    if (!pessoa) {
+      throw new Error('Pessoa não encontrada');
+    }
+  
+    await this.prisma.pessoa.delete({
+      where: { id },
+    });
+  
+    return { message: 'Pessoa deletada com sucesso' };
+  }
 }
 

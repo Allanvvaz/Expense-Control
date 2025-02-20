@@ -14,6 +14,9 @@ export class PessoaController {
   async listar() {
     return this.pessoaService.listarPessoas();
   }
-
+  @Delete('delete')
+  async deletarTransacao(@Body() body: { id: number }) {
+    return this.pessoaService.deletarPessoa(body.id);
+  }
  
 }
