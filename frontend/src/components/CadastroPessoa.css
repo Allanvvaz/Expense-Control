@@ -1,17 +1,20 @@
 .cadastro-container {
   display: flex;
   gap: 2rem;
-  max-width: 1200px;
-  margin: 2rem auto;
   padding: 2rem;
+  flex: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .cadastro-section {
   flex: 1;
-  background-color: #ffffff;
-  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .cadastro-titulo {
@@ -89,7 +92,21 @@
   margin: 0;
 }
 
+.pessoa-id {
+  background-color: #646cff;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-right: 0.5rem;
+  white-space: nowrap;
+  display: inline-block;
+}
+
 .lista-item {
+  display: flex;
+  align-items: center;
   padding: 1rem;
   border-bottom: 1px solid #eee;
   color: #333;

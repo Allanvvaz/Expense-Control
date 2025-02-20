@@ -1,17 +1,20 @@
 .transacao-container {
   display: flex;
   gap: 2rem;
-  max-width: 1200px;
-  margin: 2rem auto;
   padding: 2rem;
+  flex: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .transacao-section {
   flex: 1;
-  background-color: #ffffff;
-  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .transacao-titulo {
@@ -78,8 +81,9 @@
 .transacao-item {
   padding: 1rem;
   border-bottom: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 120px 100px;
+  gap: 1rem;
   align-items: center;
 }
 
@@ -93,11 +97,24 @@
   align-items: center;
 }
 
+.transacao-descricao {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.transacao-valor {
+  text-align: right;
+  font-weight: 500;
+}
+
 .transacao-tipo {
   padding: 0.3rem 0.6rem;
   border-radius: 4px;
   font-size: 0.875rem;
   font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .tipo-despesa {

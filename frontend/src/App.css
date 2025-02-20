@@ -1,8 +1,16 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%);
+
+
+
 }
 
 .logo {
@@ -39,4 +47,32 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.navegacao {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navegacao button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.navegacao button:hover {
+  background-color: #e0e0e0;
+}
+
+.navegacao button.ativo {
+  background-color: #646cff;
+  color: white;
 }

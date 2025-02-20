@@ -1,26 +1,32 @@
 import { useEffect, useState } from 'react';
 import { transacaoService } from '../services/transacaoService';
-import { Transacao } from '../types';
+import { pessoaService } from '../services/pessoaService';
+import { Transacao, Pessoa } from '../types';
 import './TransacaoPage.css';
 
 const TransacaoPage = () => {
   const [transacoes, setTransacoes] = useState<Transacao[]>([]);
+  const [pessoas, setPessoas] = useState<Pessoa[]>([]);
   const [descricao, setDescricao] = useState('');
   const [valor, setValor] = useState('');
   const [tipo, setTipo] = useState<'DESPESA' | 'RECEITA'>('DESPESA');
   const [pessoaId, setPessoaId] = useState('');
 
   useEffect(() => {
-    const carregarTransacoes = async () => {
+    const carregarDados = async () => {
       try {
-        const data = await transacaoService.listar();
-        setTransacoes(data);
+        const [transacoesData, pessoasData] = await Promise.all([
+          transacaoService.listar(),
+          pessoaService.listar()
+        ]);
+        setTransacoes(transacoesData);
+        setPessoas(pessoasData);
       } catch (error) {
-        console.error('Erro ao carregar transações:', error);
+        console.error('Erro ao carregar dados:', error);
       }
     };
 
-    carregarTransacoes();
+    carregarDados();
   }, []);
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -92,15 +98,20 @@ const TransacaoPage = () => {
           </div>
 
           <div className="form-grupo">
-            <label className="form-label" htmlFor="pessoaId">ID do usuário:</label>
-            <input
+            <label className="form-label" htmlFor="pessoaId">Selecione um ID:</label>
+            <select
               id="pessoaId"
-              type="number"
-              className="form-input"
+              className="form-select"
               value={pessoaId}
               onChange={(e) => setPessoaId(e.target.value)}
-              placeholder="Digite o ID do usuário"
-            />
+            >
+              <option value="">Selecione um ID</option>
+              {pessoas.map((pessoa) => (
+                <option key={pessoa.id} value={pessoa.id}>
+                  {pessoa.nome} (ID: {pessoa.id})
+                </option>
+              ))}
+            </select>
           </div>
 
           <button type="submit" className="botao-cadastrar">
@@ -114,13 +125,11 @@ const TransacaoPage = () => {
         <ul className="lista-transacoes">
           {transacoes.map((transacao) => (
             <li key={transacao.id} className="transacao-item">
-              <div className="transacao-info">
-                <span>{transacao.descricao}</span>
-                <span>R$ {transacao.valor}</span>
-                <span className={`transacao-tipo tipo-${transacao.tipo.toLowerCase()}`}>
-                  {transacao.tipo}
-                </span>
-              </div>
+              <span className="transacao-descricao">{transacao.descricao}</span>
+              <span className="transacao-valor">R$ {transacao.valor}</span>
+              <span className={`transacao-tipo tipo-${transacao.tipo.toLowerCase()}`}>
+                {transacao.tipo}
+              </span>
             </li>
           ))}
         </ul>

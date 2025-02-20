@@ -1,0 +1,64 @@
+.totais-container {
+  padding: 2rem;
+  flex: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.totais-titulo {
+  color: #333;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.tabela-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.tabela-totais {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.tabela-totais th,
+.tabela-totais td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.tabela-totais th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #333;
+}
+
+.valor {
+  text-align: right;
+  font-family: monospace;
+  font-size: 1.1rem;
+}
+
+.valor.positivo {
+  color: #2e7d32;
+}
+
+.valor.negativo {
+  color: #d32f2f;
+}
+
+.totais-gerais {
+  font-weight: 700;
+  background-color: #f8f9fa;
+}
+
+.totais-gerais td {
+  border-top: 2px solid #ddd;
+} 
