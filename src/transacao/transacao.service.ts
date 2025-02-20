@@ -91,4 +91,19 @@ export class TransacaoService {
       saldoGeral,
     };
   }
+  async deletarTransacao(id: number) {
+    const transacao = await this.prisma.transacao.findUnique({
+      where: { id },
+    });
+  
+    if (!transacao) {
+      throw new Error('Transação não encontrada');
+    }
+  
+    await this.prisma.transacao.delete({
+      where: { id },
+    });
+  
+    return { message: 'Transação deletada com sucesso' };
+  }
 }
