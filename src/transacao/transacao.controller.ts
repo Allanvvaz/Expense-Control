@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, Delete, Param } from '@nestjs/common';
 import { TransacaoService } from './transacao.service';
 
 interface CriarTransacaoDto {
@@ -30,5 +30,9 @@ export class TransacaoController {
   async consultarTotais(){
     return this.transacaoService.consultarTotais()
 
+  }
+  @Delete('delete')
+  async deletarTransacao(@Body() body: { id: number }) {
+    return this.transacaoService.deletarTransacao(body.id);
   }
 }

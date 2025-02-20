@@ -15,5 +15,9 @@ export const transacaoService = {
   consultarTotais: async (): Promise<Totais> => {
     const response = await api.get<Totais>('/transacao/totais');
     return response.data;
+  },
+  deletar: async (id: number): Promise<void> => {
+    const response = await api.delete(`/transacao/delete${id}`);
+    return response.data; 
   }
 }; 

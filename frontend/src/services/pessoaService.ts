@@ -15,5 +15,9 @@ export const pessoaService = {
   consultarTotais: async () => {
     const response = await api.get('/pessoas/totais');
     return response.data;
+  },
+  deletar: async (id: number): Promise<void> => {
+    const response = await api.delete(`/pessoas/${id}`);
+    return response.data; 
   }
 }; 

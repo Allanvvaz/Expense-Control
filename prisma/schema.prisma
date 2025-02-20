@@ -17,7 +17,7 @@ model Pessoa {
 }
 
 model Transacao {
-  id        String   @id @default(uuid())
+  id        Int   @id @default(autoincrement())
   descricao String
   valor     Float
   tipo      Tipo  
