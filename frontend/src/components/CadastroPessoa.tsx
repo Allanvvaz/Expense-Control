@@ -77,7 +77,7 @@ const CadastroPessoa = () => {
         <ul className="lista">
           {pessoas.map((pessoa) => (
             <li key={pessoa.id} className="lista-item">
-              {pessoa.nome} - {pessoa.idade} anos
+              ID: {pessoa.id} - {pessoa.nome} - {pessoa.idade} anos
             </li>
           ))}
         </ul>
