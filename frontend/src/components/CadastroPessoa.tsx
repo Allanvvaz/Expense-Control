@@ -1,9 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { pessoaService } from '../services/pessoaService';
+import { Pessoa } from '../types';
+import './CadastroPessoa.css';
 
 const CadastroPessoa = () => {
+  const [pessoas, setPessoas] = useState<Pessoa[]>([]);
   const [nome, setNome] = useState('');
   const [idade, setIdade] = useState('');
+
+  useEffect(() => {
+    const carregarPessoas = async () => {
+      try {
+        const data = await pessoaService.listar();
+        setPessoas(data);
+      } catch (error) {
+        console.error('Erro ao carregar pessoas:', error);
+      }
+    };
+
+    carregarPessoas();
+  }, []);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -14,7 +30,7 @@ const CadastroPessoa = () => {
 
     try {
       const novaPessoa = await pessoaService.criar(nome, Number(idade));
-      alert(`Usuário ${novaPessoa.nome} cadastrado com sucesso!`);
+      setPessoas([...pessoas, novaPessoa]);
       setNome('');
       setIdade('');
     } catch (error) {
@@ -24,21 +40,48 @@ const CadastroPessoa = () => {
   };
 
   return (
-    <div>
-      <h2>Cadastrar Pessoa</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Nome:
-          <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Idade:
-          <input type="number" value={idade} onChange={(e) => setIdade(e.target.value)} />
-        </label>
-        <br />
-        <button type="submit">Cadastrar</button>
-      </form>
+    <div className="cadastro-container">
+      <div className="cadastro-section">
+        <h1 className="cadastro-titulo">Cadastrar Pessoas</h1>
+        <form className="cadastro-form" onSubmit={handleSubmit}>
+          <div className="form-grupo">
+            <label className="form-label" htmlFor="nome">Nome:</label>
+            <input
+              id="nome"
+              type="text"
+              className="form-input"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+              placeholder="Digite o nome"
+            />
+          </div>
+          <div className="form-grupo">
+            <label className="form-label" htmlFor="idade">Idade:</label>
+            <input
+              id="idade"
+              type="number"
+              className="form-input"
+              value={idade}
+              onChange={(e) => setIdade(e.target.value)}
+              placeholder="Digite a idade"
+            />
+          </div>
+          <button type="submit" className="botao-cadastrar">
+            Cadastrar
+          </button>
+        </form>
+      </div>
+
+      <div className="cadastro-section">
+        <h2 className="lista-titulo">Pessoas Cadastradas</h2>
+        <ul className="lista">
+          {pessoas.map((pessoa) => (
+            <li key={pessoa.id} className="lista-item">
+              {pessoa.nome} - {pessoa.idade} anos
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,111 @@
+.transacao-container {
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.transacao-section {
+  flex: 1;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.transacao-titulo {
+  color: #333;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.transacao-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  color: #555;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.form-input, .form-select {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.form-input:focus, .form-select:focus {
+  outline: none;
+  border-color: #646cff;
+  box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.1);
+}
+
+.botao-cadastrar {
+  background-color: #646cff;
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao-cadastrar:hover {
+  background-color: #535bf2;
+}
+
+.lista-transacoes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.transacao-item {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.transacao-item:last-child {
+  border-bottom: none;
+}
+
+.transacao-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.transacao-tipo {
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.tipo-despesa {
+  background-color: #ffd7d7;
+  color: #d32f2f;
+}
+
+.tipo-receita {
+  background-color: #d7ffd7;
+  color: #2e7d32;
+} 
