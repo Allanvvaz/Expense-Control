@@ -1,3 +1,5 @@
+// Código para organizar e gerenciar a estrutura transacao do backend
+
 import { Module } from '@nestjs/common'
 import { TransacaoService } from './transacao.service'
 import { TransacaoController } from './transacao.controller'

@@ -1,3 +1,4 @@
+//Este código é responsavel por criar os modelos requeridos no desafio técnico
 generator client {
   provider = "prisma-client-js"
 }

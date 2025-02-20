@@ -4,7 +4,7 @@ import { PrismaService } from 'prisma/prisma/prisma.service'
 @Injectable()
 export class TransacaoService {
   constructor(private prisma: PrismaService) {}
-
+//Nesse código foi feito métodos para criar uma nova transação associada a uma pessoa(ID),listar transações e calcular o total de receitas e despesas
   async criarTransacao(
     descricao: string,
     valor: number,
@@ -18,7 +18,7 @@ export class TransacaoService {
     if (!pessoa) {
       throw new Error('Pessoa não encontrada')
     }
-
+    // Função para proibir menores de 18 anos de registrar receitas, regra dada pelo teste técnico
     if (pessoa.idade < 18 && tipo === 'RECEITA') {
       throw new Error('Menores de idade só podem registrar despesas')
     }
@@ -73,7 +73,7 @@ export class TransacaoService {
         saldo,
       }
     })
-
+    //Função básica para calcular totais de receitas e despesas do sistema
     let totalGeralReceitas = 0
     let totalGeralDespesas = 0
 
@@ -91,6 +91,7 @@ export class TransacaoService {
       saldoGeral,
     }
   }
+  //Método para deletar uma transação pelo ID e exclui-la do banco de dados
   async deletarTransacao(id: number) {
     const transacao = await this.prisma.transacao.findUnique({
       where: { id },
