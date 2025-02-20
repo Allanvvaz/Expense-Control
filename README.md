@@ -7,10 +7,10 @@
 
   
 
-## Description
+## Tecnologias Utilizadas
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
+[Nest](https://github.com/nestjs/nest) NestJs foi framework de typescript usado para projetar o BackEnd
+React foi a biblioteca de typescript usado para projetar o FrontEnd
 ## Project setup
 
 ```bash
