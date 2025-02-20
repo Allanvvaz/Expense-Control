@@ -59,6 +59,7 @@ export class PessoaService {
   async deletarPessoa(id: number) {
     const pessoa = await this.prisma.pessoa.findUnique({
       where: { id },
+      include:{transacoes: true}
     });
   
     if (!pessoa) {

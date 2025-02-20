@@ -16,8 +16,11 @@ export const pessoaService = {
     const response = await api.get('/pessoas/totais');
     return response.data;
   },
-  deletar: async (id: number): Promise<void> => {
-    const response = await api.delete(`/pessoas/${id}`);
-    return response.data; 
-  }
+  async deletar(data: { id: number }) {
+    try {
+      await api.delete('/pessoas/delete', { data }); 
+    } catch (error) {
+      throw new Error('Erro ao deletar pessoa');
+    }
+  },
 }; 

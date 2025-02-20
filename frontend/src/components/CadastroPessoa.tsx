@@ -38,6 +38,15 @@ const CadastroPessoa = () => {
       alert('Erro ao cadastrar pessoa.');
     }
   };
+  const handleDelete = async (id: number) => {
+    try {
+      await pessoaService.deletar({id});
+      setPessoas(pessoas.filter((pessoa) => pessoa.id !== id));
+    } catch (error) {
+      console.error('Erro ao deletar pessoa:', error);
+      alert('Erro ao deletar pessoa.');
+    }
+  };
 
   return (
     <div className="cadastro-container">
@@ -45,7 +54,9 @@ const CadastroPessoa = () => {
         <h1 className="cadastro-titulo">Cadastrar Pessoas</h1>
         <form className="cadastro-form" onSubmit={handleSubmit}>
           <div className="form-grupo">
-            <label className="form-label" htmlFor="nome">Nome:</label>
+            <label className="form-label" htmlFor="nome">
+              Nome:
+            </label>
             <input
               id="nome"
               type="text"
@@ -56,7 +67,9 @@ const CadastroPessoa = () => {
             />
           </div>
           <div className="form-grupo">
-            <label className="form-label" htmlFor="idade">Idade:</label>
+            <label className="form-label" htmlFor="idade">
+              Idade:
+            </label>
             <input
               id="idade"
               type="number"
@@ -77,7 +90,9 @@ const CadastroPessoa = () => {
         <ul className="lista">
           {pessoas.map((pessoa) => (
             <li key={pessoa.id} className="lista-item">
-              <span className="pessoa-id">ID: {pessoa.id}</span> - {pessoa.nome} - {pessoa.idade} anos
+              <span className="pessoa-id">ID: {pessoa.id}</span> - {pessoa.nome}{' '}
+              - {pessoa.idade} anos
+              <button className="botao-deletar" onClick={() => handleDelete(pessoa.id)}>Deletar</button>
             </li>
           ))}
         </ul>
