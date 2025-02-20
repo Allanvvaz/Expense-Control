@@ -1,25 +1,25 @@
-import { useEffect, useState } from 'react';
-import { transacaoService } from '../services/transacaoService';
-import { Totais } from '../types';
-import './TotaisPage.css';
+import { useEffect, useState } from 'react'
+import { transacaoService } from '../services/transacaoService'
+import { Totais } from '../types'
+import './TotaisPage.css'
 
 const TotaisPage = () => {
-  const [totais, setTotais] = useState<Totais | null>(null);
+  const [totais, setTotais] = useState<Totais | null>(null)
 
   useEffect(() => {
     const carregarTotais = async () => {
       try {
-        const data = await transacaoService.consultarTotais();
-        setTotais(data);
+        const data = await transacaoService.consultarTotais()
+        setTotais(data)
       } catch (error) {
-        console.error('Erro ao carregar totais:', error);
+        console.error('Erro ao carregar totais:', error)
       }
-    };
+    }
 
-    carregarTotais();
-  }, []);
+    carregarTotais()
+  }, [])
 
-  if (!totais) return <div>Carregando...</div>;
+  if (!totais) return <div>Carregando...</div>
 
   return (
     <div className="totais-container">
@@ -61,7 +61,7 @@ const TotaisPage = () => {
         </table>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TotaisPage; 
+export default TotaisPage 

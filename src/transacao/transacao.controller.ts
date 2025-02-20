@@ -1,11 +1,11 @@
-import { Controller, Post, Body, Get, Delete, Param } from '@nestjs/common';
-import { TransacaoService } from './transacao.service';
+import { Controller, Post, Body, Get, Delete, Param } from '@nestjs/common'
+import { TransacaoService } from './transacao.service'
 
 interface CriarTransacaoDto {
-  descricao: string;
-  valor: number;
-  tipo: 'DESPESA' | 'RECEITA'; 
-  pessoaId: number;
+  descricao: string
+  valor: number
+  tipo: 'DESPESA' | 'RECEITA' 
+  pessoaId: number
 }
 
 @Controller('transacao')
@@ -19,12 +19,12 @@ export class TransacaoController {
       body.valor,
       body.tipo,
       body.pessoaId,
-    );
+    )
   }
 
   @Get()
   async listarTransacoes() {
-    return this.transacaoService.listarTransacoes();
+    return this.transacaoService.listarTransacoes()
   }
   @Get('totais')
   async consultarTotais(){
@@ -33,6 +33,6 @@ export class TransacaoController {
   }
   @Delete('delete')
   async deletarTransacao(@Body() body: { id: number }) {
-    return this.transacaoService.deletarTransacao(body.id);
+    return this.transacaoService.deletarTransacao(body.id)
   }
 }

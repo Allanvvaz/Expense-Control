@@ -1,52 +1,52 @@
-import { useState, useEffect } from 'react';
-import { pessoaService } from '../services/pessoaService';
-import { Pessoa } from '../types';
-import './CadastroPessoa.css';
+import { useState, useEffect } from 'react'
+import { pessoaService } from '../services/pessoaService'
+import { Pessoa } from '../types'
+import './CadastroPessoa.css'
 
 const CadastroPessoa = () => {
-  const [pessoas, setPessoas] = useState<Pessoa[]>([]);
-  const [nome, setNome] = useState('');
-  const [idade, setIdade] = useState('');
+  const [pessoas, setPessoas] = useState<Pessoa[]>([])
+  const [nome, setNome] = useState('')
+  const [idade, setIdade] = useState('')
 
   useEffect(() => {
     const carregarPessoas = async () => {
       try {
-        const data = await pessoaService.listar();
-        setPessoas(data);
+        const data = await pessoaService.listar()
+        setPessoas(data)
       } catch (error) {
-        console.error('Erro ao carregar pessoas:', error);
+        console.error('Erro ao carregar pessoas:', error)
       }
-    };
+    }
 
-    carregarPessoas();
-  }, []);
+    carregarPessoas()
+  }, [])
 
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
+    event.preventDefault()
     if (!nome || !idade) {
-      alert('Por favor, preencha todos os campos.');
-      return;
+      alert('Por favor, preencha todos os campos.')
+      return
     }
 
     try {
-      const novaPessoa = await pessoaService.criar(nome, Number(idade));
-      setPessoas([...pessoas, novaPessoa]);
-      setNome('');
-      setIdade('');
+      const novaPessoa = await pessoaService.criar(nome, Number(idade))
+      setPessoas([...pessoas, novaPessoa])
+      setNome('')
+      setIdade('')
     } catch (error) {
-      console.error('Erro ao cadastrar pessoa:', error);
-      alert('Erro ao cadastrar pessoa.');
+      console.error('Erro ao cadastrar pessoa:', error)
+      alert('Erro ao cadastrar pessoa.')
     }
-  };
+  }
   const handleDelete = async (id: number) => {
     try {
-      await pessoaService.deletar({id});
-      setPessoas(pessoas.filter((pessoa) => pessoa.id !== id));
+      await pessoaService.deletar({id})
+      setPessoas(pessoas.filter((pessoa) => pessoa.id !== id))
     } catch (error) {
-      console.error('Erro ao deletar pessoa:', error);
-      alert('Erro ao deletar pessoa.');
+      console.error('Erro ao deletar pessoa:', error)
+      alert('Erro ao deletar pessoa.')
     }
-  };
+  }
 
   return (
     <div className="cadastro-container">
@@ -98,7 +98,7 @@ const CadastroPessoa = () => {
         </ul>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CadastroPessoa;
+export default CadastroPessoa

@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'prisma/prisma/prisma.service';
+import { Injectable } from '@nestjs/common'
+import { PrismaService } from 'prisma/prisma/prisma.service'
 
 @Injectable()
 export class TransacaoService {
@@ -13,14 +13,14 @@ export class TransacaoService {
   ) {
     const pessoa = await this.prisma.pessoa.findUnique({
       where: { id: pessoaId },
-    });
+    })
 
     if (!pessoa) {
-      throw new Error('Pessoa não encontrada');
+      throw new Error('Pessoa não encontrada')
     }
 
     if (pessoa.idade < 18 && tipo === 'RECEITA') {
-      throw new Error('Menores de idade só podem registrar despesas');
+      throw new Error('Menores de idade só podem registrar despesas')
     }
 
     
@@ -31,9 +31,9 @@ export class TransacaoService {
         tipo,
         pessoaId,
       },
-    });
+    })
 
-    return transacao;
+    return transacao
   }
 
   async listarTransacoes() {
@@ -41,29 +41,29 @@ export class TransacaoService {
       include: {
         pessoa: true, 
       },
-    });
+    })
   }
   async consultarTotais() {
     const pessoas = await this.prisma.pessoa.findMany({
       include: {
         transacoes: true,  
       },
-    });
+    })
 
     const totaisPorPessoa = pessoas.map((pessoa) => {
-      const { transacoes } = pessoa;
-      let totalReceitas = 0;
-      let totalDespesas = 0;
+      const { transacoes } = pessoa
+      let totalReceitas = 0
+      let totalDespesas = 0
 
       transacoes.forEach((transacao) => {
         if (transacao.tipo === 'RECEITA') {
-          totalReceitas += transacao.valor;
+          totalReceitas += transacao.valor
         } else if (transacao.tipo === 'DESPESA') {
-          totalDespesas += transacao.valor;
+          totalDespesas += transacao.valor
         }
-      });
+      })
 
-      const saldo = totalReceitas - totalDespesas;
+      const saldo = totalReceitas - totalDespesas
 
       return {
         pessoaId: pessoa.id,
@@ -71,39 +71,39 @@ export class TransacaoService {
         totalReceitas,
         totalDespesas,
         saldo,
-      };
-    });
+      }
+    })
 
-    let totalGeralReceitas = 0;
-    let totalGeralDespesas = 0;
+    let totalGeralReceitas = 0
+    let totalGeralDespesas = 0
 
     totaisPorPessoa.forEach((totals) => {
-      totalGeralReceitas += totals.totalReceitas;
-      totalGeralDespesas += totals.totalDespesas;
-    });
+      totalGeralReceitas += totals.totalReceitas
+      totalGeralDespesas += totals.totalDespesas
+    })
 
-    const saldoGeral = totalGeralReceitas - totalGeralDespesas;
+    const saldoGeral = totalGeralReceitas - totalGeralDespesas
 
     return {
       totaisPorPessoa,
       totalGeralReceitas,
       totalGeralDespesas,
       saldoGeral,
-    };
+    }
   }
   async deletarTransacao(id: number) {
     const transacao = await this.prisma.transacao.findUnique({
       where: { id },
-    });
+    })
   
     if (!transacao) {
-      throw new Error('Transação não encontrada');
+      throw new Error('Transação não encontrada')
     }
   
     await this.prisma.transacao.delete({
       where: { id },
-    });
+    })
   
-    return { message: 'Transação deletada com sucesso' };
+    return { message: 'Transação deletada com sucesso' }
   }
 }

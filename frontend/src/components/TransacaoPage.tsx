@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
-import { transacaoService } from '../services/transacaoService';
-import { pessoaService } from '../services/pessoaService';
-import { Transacao, Pessoa } from '../types';
-import './TransacaoPage.css';
+import { useEffect, useState } from 'react'
+import { transacaoService } from '../services/transacaoService'
+import { pessoaService } from '../services/pessoaService'
+import { Transacao, Pessoa } from '../types'
+import './TransacaoPage.css'
 
 const TransacaoPage = () => {
-  const [transacoes, setTransacoes] = useState<Transacao[]>([]);
-  const [pessoas, setPessoas] = useState<Pessoa[]>([]);
-  const [descricao, setDescricao] = useState('');
-  const [valor, setValor] = useState('');
-  const [tipo, setTipo] = useState<'DESPESA' | 'RECEITA'>('DESPESA');
-  const [pessoaId, setPessoaId] = useState('');
+  const [transacoes, setTransacoes] = useState<Transacao[]>([])
+  const [pessoas, setPessoas] = useState<Pessoa[]>([])
+  const [descricao, setDescricao] = useState('')
+  const [valor, setValor] = useState('')
+  const [tipo, setTipo] = useState<'DESPESA' | 'RECEITA'>('DESPESA')
+  const [pessoaId, setPessoaId] = useState('')
 
   useEffect(() => {
     const carregarDados = async () => {
@@ -18,22 +18,22 @@ const TransacaoPage = () => {
         const [transacoesData, pessoasData] = await Promise.all([
           transacaoService.listar(),
           pessoaService.listar()
-        ]);
-        setTransacoes(transacoesData);
-        setPessoas(pessoasData);
+        ])
+        setTransacoes(transacoesData)
+        setPessoas(pessoasData)
       } catch (error) {
-        console.error('Erro ao carregar dados:', error);
+        console.error('Erro ao carregar dados:', error)
       }
-    };
+    }
 
-    carregarDados();
-  }, []);
+    carregarDados()
+  }, [])
 
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
+    event.preventDefault()
     if (!descricao || !valor || !pessoaId) {
-      alert('Preencha todos os campos.');
-      return;
+      alert('Preencha todos os campos.')
+      return
     }
 
     try {
@@ -42,18 +42,18 @@ const TransacaoPage = () => {
         valor: Number(valor),
         tipo,
         pessoaId: Number(pessoaId)
-      });
+      })
 
-      setTransacoes([...transacoes, novaTransacao]);
-      setDescricao('');
-      setValor('');
-      setTipo('DESPESA');
-      setPessoaId('');
+      setTransacoes([...transacoes, novaTransacao])
+      setDescricao('')
+      setValor('')
+      setTipo('DESPESA')
+      setPessoaId('')
     } catch (error) {
-      console.error('Erro ao cadastrar transação:', error);
-      alert('Erro ao cadastrar transação.');
+      console.error('Erro ao cadastrar transação:', error)
+      alert('Erro ao cadastrar transação.')
     }
-  };
+  }
 
   return (
     <div className="transacao-container">
@@ -135,7 +135,7 @@ const TransacaoPage = () => {
         </ul>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TransacaoPage;
+export default TransacaoPage

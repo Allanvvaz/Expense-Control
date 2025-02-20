@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import './App.css';
-import TransacaoPage from './components/TransacaoPage';
-import CadastroPessoa from './components/CadastroPessoa';
-import TotaisPage from './components/TotaisPage';
+import { useState } from 'react'
+import './App.css'
+import TransacaoPage from './components/TransacaoPage'
+import CadastroPessoa from './components/CadastroPessoa'
+import TotaisPage from './components/TotaisPage'
 
 function App() {
-  const [paginaAtual, setPaginaAtual] = useState<'pessoas' | 'transacoes' | 'totais'>('pessoas');
+  const [paginaAtual, setPaginaAtual] = useState<'pessoas' | 'transacoes' | 'totais'>('pessoas')
 
   return (
     <div className="container">
@@ -25,7 +25,7 @@ function App() {
       {paginaAtual === 'transacoes' && <TransacaoPage />}
       {paginaAtual === 'totais' && <TotaisPage />}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
