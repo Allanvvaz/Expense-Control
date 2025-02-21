@@ -60,8 +60,8 @@ No schema.prisma cole a connection string da database onde se encontra url, depo
 #Isso garante que os tipos do prisma sejam regenerados de acordo com o banco de dados
 $ npx prisma generate
 
-# Caso estiver aplicando migrações
-$ npx prisma migrate deploy
+# Para aplicar as migrações
+$ npx prisma migrate 
 
 
 
