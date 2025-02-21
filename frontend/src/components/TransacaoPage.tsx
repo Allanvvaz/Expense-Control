@@ -5,14 +5,17 @@ import { Transacao, Pessoa } from '../types'
 import './TransacaoPage.css'
 
 const TransacaoPage = () => {
+    //estados para armazenar transações e pessoas
   const [transacoes, setTransacoes] = useState<Transacao[]>([])
   const [pessoas, setPessoas] = useState<Pessoa[]>([])
+  // estados para os campos do formulário
   const [descricao, setDescricao] = useState('')
   const [valor, setValor] = useState('')
   const [tipo, setTipo] = useState<'DESPESA' | 'RECEITA'>('DESPESA')
   const [pessoaId, setPessoaId] = useState('')
 
   useEffect(() => {
+        // função básica para carregar os dados de transações e pessoas
     const carregarDados = async () => {
       try {
         const [transacoesData, pessoasData] = await Promise.all([

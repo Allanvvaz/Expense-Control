@@ -7,6 +7,7 @@ const CadastroPessoa = () => {
   const [pessoas, setPessoas] = useState<Pessoa[]>([])
   const [nome, setNome] = useState('')
   const [idade, setIdade] = useState('')
+  // efeito que carrega a lista de pessoas ao montar o componente
 
   useEffect(() => {
     const carregarPessoas = async () => {
@@ -30,6 +31,7 @@ const CadastroPessoa = () => {
 
     try {
       const novaPessoa = await pessoaService.criar(nome, Number(idade))
+            // reseta os campos do formulário
       setPessoas([...pessoas, novaPessoa])
       setNome('')
       setIdade('')
@@ -38,9 +40,12 @@ const CadastroPessoa = () => {
       alert('Erro ao cadastrar pessoa.')
     }
   }
+    // Função para deletar uma pessoa pelo ID
+
   const handleDelete = async (id: number) => {
     try {
       await pessoaService.deletar({id})
+            // atualiza a lista removendo a pessoa deletada
       setPessoas(pessoas.filter((pessoa) => pessoa.id !== id))
     } catch (error) {
       console.error('Erro ao deletar pessoa:', error)
