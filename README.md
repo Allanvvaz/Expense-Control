@@ -36,18 +36,29 @@ O projeto utiliza **NeonDB** como banco de dados PostgreSQL em nuvem e **Prisma 
 $ git clone https://github.com/Allanvvaz/Expense-Control.git
 
 $ npm install
+
+$ npx prisma generate
+
+#Para instalar as dependencias do frontend
+$ cd frontend
+
+$ npm install
+
+#Para voltar ao diretório principal
+$cd ..
 ```
+
 
 ## Passos para rodar o projeto
 
 ```bash
-#Para rodar o BackEnd
+#No diretório principal use o comando para rodar o backend
 $ npm run start
 
 #Para entrar na pasta do frontend
 $ cd frontend
 
-#Para rodar o FrontEnd
+#No diretório do frontend use o comando para rodar a página
 $ npm run dev
 ```
 
@@ -61,7 +72,11 @@ No schema.prisma cole a connection string da database onde se encontra url, depo
 $ npx prisma generate
 
 # Para aplicar as migrações
-$ npx prisma migrate 
+$ npx prisma migrate
+```
+## OBS
+A url da DataBase atual é de um banco de dados do Neon criado por mim
+
 
 
 
