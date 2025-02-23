@@ -5,7 +5,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://neondb_owner:npg_Zr13QAbXJVcB@ep-silent-term-a89eb7i7-pooler.eastus2.azure.neon.tech/neondb?sslmode=require"
+  url      = "DATABASE_URL"
 }
 
 model Pessoa {
