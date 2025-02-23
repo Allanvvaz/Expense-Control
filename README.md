@@ -51,7 +51,17 @@ $ cd frontend
 $ npm run dev
 ```
 
+## Problemas que podem acontecer
 
+A connection string responsável pelo banco de dados pode não funcionar, para isso é necessário criar um banco de dados de uma database.
+No schema.prisma cole a connection string da database onde se encontra url, depois digite:
+
+```bash
+#Isso garante que os tipos do prisma sejam regenerados de acordo com o banco de dados
+$ npx prisma generate
+
+# Para aplicar as migrações
+$ npx prisma migrate 
 
 
 
